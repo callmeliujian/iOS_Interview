@@ -1,4 +1,8 @@
-# iOS_Interview
+说明：面试来源自[简书：让 BAT 的 Offer 不再难拿](http://www.jianshu.com/p/ee15c1cf9c16)和一些自己整理的题目。
+
+答案为自己整理，未经校对，如有纰漏，还望指正指正。
+- - -
+
 # 索引
 [剑指offer相关题目](https://github.com/callmeliujian/iOS_Interview/blob/master/剑指offer题目.md)
 [数据结构相关题目](https://github.com/callmeliujian/iOS_Interview/blob/master/数据结构相关.md)
