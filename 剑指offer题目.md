@@ -33,6 +33,44 @@
 			}
 			```
 	-完整代码：[面试题五](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题5)   
+	- 面试题37:输入两个链表，找出它们的第一个公共节点。(如图)
+		![面试题37](media/%E9%9D%A2%E8%AF%95%E9%A2%9837.png)
+
+		- 解题思路：首先遍历两个链表得到它们的长度，就能知道哪个链表长，长多少。第二次遍历的时候，先在较长的链表上先走若干步，接着再同时在两个链表上遍历，找到的第一个相同的节点就是它们的公共节点。 
+		- 主要算法
+			
+			```
+			void FindFirstCommonNode(ListNode *p, ListNode *q)
+			{
+		    int lengthList1 = GetListLength(p);
+		    int lengthList2 = GetListLength(q);
+		    
+		    int listDiff;
+		    ListNode *listLong, *listShort;
+		    
+		    if (lengthList1 > lengthList2) {
+		        listDiff = lengthList1 - lengthList2;
+		        listLong = p;
+		        listShort = q;
+		    }else{
+		        listDiff = lengthList2 - lengthList1;
+		        listLong = q;
+		        listShort = p;
+		    }
+		    
+		    for (int i = 0; i < listDiff; i++) {
+		        listLong = listLong -> m_pNext;
+		    }
+		    
+		    while (listLong != NULL && listShort != NULL && listLong != listShort) {
+		        listLong = listLong -> m_pNext;
+		        listShort = listShort -> m_pNext;
+		    }
+		    
+		    cout << listLong -> m_Key;
+		    
+			}
+			```
 * 面试题三
 	- 题目：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下的顺序排序。请完成一个函数，输入这样的一个二维数组盒一个整数，判断数组中是否含有该整数。
 	- 解题思路：首先选取数组中右上角的数字。如果该数字等于要查找的数字，结束查找；如果该数字大于要查找的数字，剔除该数字所在的列；如果该数字小于要查找的数字，剔除该数字所在的行。
