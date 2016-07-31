@@ -31,7 +31,10 @@
     			}
 			}
 			```
-	-完整代码：[面试题五](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题5)   
+	-完整代码：[面试题五](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题5)
+	- 面试题13:给定单项链表的头指针和一个节点指针，定义一个函数在O(1)时间删除该节点。
+		- 解法：假如我们想删除节点i，i的下一个节点是j。我们可以把节点j的内容复制给i，把i的next指向j的next。如果我们要删除的节点位于尾部，我们只能从头节点开始，遍历到尾部的前一个节点，并删除尾部节点。如果只有一个节点我们就直接删除它。
+		- 完整代码：[面试题13](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题13)
 	- 面试题37:输入两个链表，找出它们的第一个公共节点。(如图)
 		![面试题37](media/%E9%9D%A2%E8%AF%95%E9%A2%9837.png)
 
