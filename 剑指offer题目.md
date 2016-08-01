@@ -35,6 +35,35 @@
 	- 面试题13:给定单项链表的头指针和一个节点指针，定义一个函数在O(1)时间删除该节点。
 		- 解法：假如我们想删除节点i，i的下一个节点是j。我们可以把节点j的内容复制给i，把i的next指向j的next。如果我们要删除的节点位于尾部，我们只能从头节点开始，遍历到尾部的前一个节点，并删除尾部节点。如果只有一个节点我们就直接删除它。
 		- 完整代码：[面试题13](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题13)
+		
+	- 面试题15：输入一个链表，输出该链表中倒数第k个节点。本题从1开始计数，即链表的尾节点是倒数第一个节点。例如1、2、3、4、5、6。倒数第三个节点是4。
+		- 解法：首先要清楚倒数第k个节点就是正数第n-k+1个节点。所以定义两个指针p，q。首先让p走到第k－1个节点，之后q从头出发，p继续往下走，当p走到尾部，q正好指向倒数第k个节点。
+		- 注意：1.输入的链表是否为空。 2.节点个数是否少于k个。 3.k值不能为0.
+		- 关键代码：
+		
+			```
+			void FindKthToTail(LinkList &L, int k)
+			{
+			    if (L != NULL && k != 0) {
+			        LNode *p = L;
+			        LNode *q = L;
+			        for (int i = 0; i < k; i ++) {
+			            if (p!= NULL) {
+			                p = p -> next;
+			            }else{
+			                return;
+			            }
+			        }
+			        
+			        while (p) {
+			            q = q -> next;
+			            p = p -> next;
+			        }
+			        cout << q -> data;
+			    }
+			}
+			```
+		- 完整代码：[面试题15](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题15)
 	- 面试题37:输入两个链表，找出它们的第一个公共节点。(如图)
 		![面试题37](media/%E9%9D%A2%E8%AF%95%E9%A2%9837.png)
 
