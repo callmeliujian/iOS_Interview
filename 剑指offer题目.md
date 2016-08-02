@@ -64,6 +64,54 @@
 			}
 			```
 		- 完整代码：[面试题15](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题15)
+	- 面试题16:定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表。
+		- 解法：定义三个指针，分别指向当前结点、当前结点的前一个结点、当前结点的后一个结点。
+		- 关键代码：
+			
+			```
+			LNode* ReverseLinkList(LinkList &L)
+			{
+			    LNode *p, *pPrev, *head, *pNext;
+			    p = L;
+			    pPrev = head = NULL;
+			    while (p) {
+			        pNext = p -> next;
+			        if (!pNext) {
+			            head = p;
+			        }
+			        p -> next = pPrev;
+			        pPrev = p;
+			        p = pNext;
+			    }
+			    return head;
+			}
+			```
+		- 完整代码：[面试题16](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题16)
+	- 面试题17：输入两个递增的排序链表，合并这两个链表并使新链表中的结点依然是按照升序排列的。
+		- 解法：两个链表中的头节点值较小的节点作为合并后连标的头节点。两个链表剩余的节点依旧是顺序的，所以可以把较小的节点连接到合并后的链表中。因为每次的步骤是一样的，所以可以使用递归。
+		- 关键代码：
+		
+			```
+			LNode * Merge(LNode *p, LNode *q)
+			{
+			    if (p == NULL) {
+			        return q;
+			    }else if (q == NULL){
+			        return p;
+			    }
+			    LNode *r;
+			    if (p -> data < q -> data) {
+			        r = p;
+			        r -> next = Merge(p -> next, q);
+			    }else{
+			        r = q;
+			        r -> next = Merge(p, q -> next);
+			    }
+			    return r;
+			}
+			```
+		- 完整代码：[面试题17](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/合并两个排序链表)
+
 	- 面试题37:输入两个链表，找出它们的第一个公共节点。(如图)
 		![面试题37](media/%E9%9D%A2%E8%AF%95%E9%A2%9837.png)
 
@@ -132,10 +180,5 @@
 		}
 		```
 	- 完整代码：[面试题三](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题三) 
-* 合并两个排序链表
-	* 两个链表中的头节点值较小的节点作为合并后连标的头节点。
-	* 两个链表剩余的节点依旧是顺序的，所以可以把较小的节点连接到合并后的链表中。
-	* 因为每次的步骤是一样的，所以可以使用递归。
-	* 完整代码：[合并两个排序链表](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/合并两个排序链表)
 
 
