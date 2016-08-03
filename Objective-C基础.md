@@ -152,5 +152,39 @@
 	//将block转移到堆中
 	Block_copy(block);
 	```
+6. 代理设计模式的作用：
+	- A对象监听B对象的行为，A成为B的代理。
+	- B对象告诉A对象一些信息，A成为B的代理。
+7. 代理设计模式的开发步骤：
+	1. 创建协议（协议名称的格式：控件名＋Delegate），协议里面声明代理方法（一般代理方法用@optional）。
+	2. 声明一个代理属性：@property(nonatomic, weak) id<代理协议>delegate;。
+	3. 在内部发生某些行为的时候，调用代理对应的代理方法，通知代理内部发生的事情。
+	4. 设置代理：xxx.delegate = yyy;
+	5. yyy对象遵守协议，实现代理方法。
+	6. 判断是否实现协议的某个方法。
+	
+	```objc
+	if ([self.delegate respondsToSelector:@selector(方法名)]) {
+   [self.delegate 方法名];
+}
+	``` 
+8. KVC/KVO
+	* KVC(Key Value Coding)：给模型属性赋值。
+	* KVO(Key Value Observing)：监听模型属性改变。
+		* KVO使用步骤：
+		
+			```objc
+			// b对象监听了a对象的name属性的改变
+			[a addObserver:b forKeyPath:@"name" options: NSKeyValueObservingOptionOld context:nil];
+
+			// b对象实现监听方法
+			- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+			{
+			    //some code
+			}
+			
+			//移除监听
+			[a removeObserver:b forKeyPath:@"name"];
+			``` 		 
 
 
