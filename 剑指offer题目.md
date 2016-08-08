@@ -180,5 +180,47 @@
 		}
 		```
 	- 完整代码：[面试题三](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题三) 
+- 面试题58：给定一颗二叉树和其中的一个节点，如何找出中序遍历的下一个节点 。（中序遍历序列为：d、b、h、e、i、a、f、c、g）
+![二叉树示例](media/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B-1.png)
 
+
+	* 解题思路：
+		1. 如果一个节点有右子树，那么它的下一个结点就是它的右子树的最左节点。例如：b的下一个节点是h。
+		2. 如果一个节点没有右子树，并且节点是它的父结点的左子结点，那么它的下一个节点就是它的父结点。例如：d的下一个结点是b。
+		3. 如果一个节点即没有右子树，并且还是它父结点的右子结点，我们可以沿着指向父结点的指针一直向上遍历，直到找到一个是它父结点的左子结点的结点。如果这样的结点存在，那么这个结点的父结点就是我们要找的下一个结点。例如：找i的下一个节点，i的父结点是e，但是它是b的右节点，所以我们继续向上遍历到b，b是它父结点e的左子结点，所以b为i的下一个节点；g的过程是类似的直到遍历的根节点，所以g没有下一个结点。
+	* 主要算法：
+	
+		```
+		void getNet(BinaryTreeNode *node)
+		{
+		    if (node == NULL) {
+		        return;
+		    }
+		    BinaryTreeNode *nextNode = NULL;
+		    if (node -> Right != NULL) {
+		        BinaryTreeNode *right = node -> Right;
+		        while (right -> Left != NULL) {
+		            right = right -> Left;
+		        }
+		        nextNode = right;
+		        //cout << "the next node is " << right -> value << endl;
+		    }else if(node -> Parent != NULL){
+		        BinaryTreeNode *currentNode = node;
+		        BinaryTreeNode *parentNode = node -> Parent;
+		        while (parentNode != NULL && currentNode == parentNode -> Right) {
+		            currentNode = parentNode;
+		            parentNode = parentNode -> Parent;
+		        }
+		        nextNode = parentNode;
+		       // cout << "the next node is " << parentNode -> value << endl;
+		    }
+		    if (nextNode) {
+		        cout << "tne next node is " << nextNode -> value << endl;
+		    }else{
+		        cout << "the next node is null" << endl;
+		    }
+		    
+		}
+		``` 
+	* 完整代码：[面试题58](https://github.com/callmeliujian/iOS_Interview/tree/master/示例程序/面试题58)
 
